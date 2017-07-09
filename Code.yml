@@ -1,0 +1,96 @@
+# ############################################################################################################# #
+#                                                                                                               #
+#                                         Easy Set Server By Luis Artz                                          #
+#                                                                                                               #
+# ############################################################################################################# #
+
+Options:
+    Versionz: 1.0
+
+on load:
+    message "&c" to console
+    message "&c--------------------" to console
+    message "&2Easy set server By LuisArtz {@Versionz} enabled" to console
+    message "&c--------------------" to console
+    message "&c" to console
+
+on unload:
+    message "&c" to console
+    message "&c--------------------" to console
+    message "&2Easy set server By LuisArtz {@Versionz} disabled" to console
+    message "&c--------------------" to console
+    message "&c" to console
+
+command /setsv [<text>]:
+    permission: setserver.luisartz.create
+    trigger:
+        if arg-1 is not set:
+            send "&2&m----------------------"
+            send "&a/setsv <server>"
+            send "&2&m----------------------"
+            stop trigger
+        if arg-1 is "hub" or "lobby":
+            delete {Lobby.server}
+            delete {Hub.server}
+            send "&2&m----------------------"
+            send "&aYou set the Lobby of the server!"
+            send "&2&m----------------------"
+            set {Lobby.server} to location of player
+            set {Hub.server} to location of player
+            stop trigger
+        if arg-1 is set:
+            delete {%arg 1%.server}
+            send "&2&m----------------------"
+            send "&aYou set the %arg 1% of the server!"
+            send "&2&m----------------------"
+            set {%arg 1%.server} to location of player
+            stop trigger
+command /delsv [<text>]:
+    permission: setserver.luisartz.delete
+    trigger:
+        if arg-1 is not set:
+            send "&4&m----------------------"
+            send "&c/delsv <servidor>"
+            send "&4&m----------------------"
+            stop trigger
+        if arg-1 is "Lobby" or "Hub":
+            send "&4&m----------------------"
+            send "&cYou remove the Lobby of the server!"
+            send "&4&m----------------------"
+            delete {Lobby.server}
+            delete {Hub.server}
+        if arg-1 is set:
+            send "&4&m----------------------"
+            send "&cYou remove the %arg 1%!"
+            send "&4&m----------------------"
+            delete {%arg 1%.server}
+
+command /sv [<text>]:
+    trigger:
+        if arg-1 is not set:
+            send "&3&m-------------------"
+            send "&b/sv <server>"
+            send "&3&m-------------------"
+            stop trigger
+        if {%arg 1%.server} is not set:
+            message "&cEsta modalidad no existe"
+            stop trigger
+        if arg-1 is "Lobby" or "Hub":
+            send "&2&m----------------------"
+            send "&cTeleporting to the &cLobby..."
+            send "&2&m----------------------"
+            wait 3 real seconds
+            teleport player to {Lobby.server}
+            send "&2&m----------------------"
+            send "&aYou've been teleported to &cLobby"
+            send "&2&m----------------------"
+            stop trigger
+        if arg-1 is set:
+            send "&2&m----------------------"
+            send "&cTeleporting to the &c%arg 1%..."
+            send "&2&m----------------------"
+            wait 3 real seconds
+            teleport player to {%arg 1%.server}
+            send "&2&m----------------------"
+            send "&aYou've been teleported to &c%arg 1%"
+            send "&2&m----------------------"
