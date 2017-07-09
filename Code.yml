@@ -6,6 +6,16 @@
 
 Options:
     Versionz: 1.0
+    Ipz: &3GoodPvPx.mcnetwork.me
+    Welcome1: &9Welcome! %player% to the server!
+    Welcome2: &3The server usage &bEasy Set Server By LuisArtz 1.0
+    Welcome3: &1Developed by: &9LuisArtz
+    Welcome4: &3If you want go to a server execute command &b/sv <server>
+    Welcome5: &3We hope you have fun on the server!
+    Welcome6: &cChange this in "plugins/Skript/scripts/Easy set server By LuisArtz"
+# You can add more "Welcomes"
+    Up: &b======================
+    Up1: &b---------------------
 
 on load:
     message "&c" to console
@@ -76,6 +86,7 @@ command /sv [<text>]:
             message "&cEsta modalidad no existe"
             stop trigger
         if arg-1 is "Lobby" or "Hub":
+            clear player's inventory
             send "&2&m----------------------"
             send "&cTeleporting to the &cLobby..."
             send "&2&m----------------------"
@@ -86,6 +97,7 @@ command /sv [<text>]:
             send "&2&m----------------------"
             stop trigger
         if arg-1 is set:
+            clear player's inventory
             send "&2&m----------------------"
             send "&cTeleporting to the &c%arg 1%..."
             send "&2&m----------------------"
@@ -94,3 +106,24 @@ command /sv [<text>]:
             send "&2&m----------------------"
             send "&aYou've been teleported to &c%arg 1%"
             send "&2&m----------------------"
+
+on join:
+    send "&7[&a+&7] %player%" to players
+    teleport player to {Lobby.server}
+    wait 2 real seconds
+    send "{@Up}" to player
+    send "{@Welcome1}" to player
+    send "{@Welcome2}" to player
+    send "{@Up1}" to player
+    send "{@Welcome3}" to player
+    send "{@Welcome4}" to player
+    send "{@Up1}" to player
+    send "{@Welcome5}" to player
+    send "{@Ipz}" to player
+    send "{@Up}" to player
+# You can add more lines
+    if player has permission "easysetspawn.change":
+        send "{@Welcome6}" to player
+
+on leave:
+    send "&7[&c-&7] %player%" to players
