@@ -1,33 +1,33 @@
-# ############################################################################################################# #
-#                                                                                                               #
-#                                         Easy Set Server By Luis Artz                                          #
-#                                                                                                               #
-# ############################################################################################################# #
+# ############################################################################################# #
+#                                                                                               #
+#                              Easy Set Server By Luis Artz                                     #
+#                                                                                               #
+# ############################################################################################# #
 
 Options:
+# Don't change the version (Versionz) please.
+# No cambies la versión (Versionz)porfavor.
     Versionz: 1.0
     Ipz: &3GoodPvPx.mcnetwork.me
-    Welcome1: &9Welcome! %player% to the server!
-    Welcome2: &3The server usage &bEasy Set Server By LuisArtz 1.0
+    Welcome1: &aWelcome! &b%player%&a to the server!
+    Welcome2: &aThe server usage &bSimple Set Server By LuisArtz 1.0
     Welcome3: &1Developed by: &9LuisArtz
-    Welcome4: &3If you want go to a server execute command &b/sv <server>
-    Welcome5: &3We hope you have fun on the server!
-    Welcome6: &cChange this in "plugins/Skript/scripts/Easy set server By LuisArtz"
-# You can add more "Welcomes"
-    Up: &b======================
-    Up1: &b---------------------
+    Welcome4: &aIf you want go to a server execute command &b/sv <server>
+    Welcome5: &aWe hope you have fun on the server!
+    Up: &2======================
+    Up1: &a---------------------
 
 on load:
     message "&c" to console
     message "&c--------------------" to console
-    message "&2Easy set server By LuisArtz {@Versionz} enabled" to console
+    message "&4Simple set server By LuisArtz {@Versionz} enabled" to console
     message "&c--------------------" to console
     message "&c" to console
 
 on unload:
     message "&c" to console
     message "&c--------------------" to console
-    message "&2Easy set server By LuisArtz {@Versionz} disabled" to console
+    message "&2Simple set server By LuisArtz {@Versionz} disabled" to console
     message "&c--------------------" to console
     message "&c" to console
 
@@ -108,9 +108,8 @@ command /sv [<text>]:
             send "&2&m----------------------"
 
 on join:
-    send "&7[&a+&7] %player%" to players
     teleport player to {Lobby.server}
-    wait 2 real seconds
+    wait 4 real seconds
     send "{@Up}" to player
     send "{@Welcome1}" to player
     send "{@Welcome2}" to player
@@ -121,9 +120,7 @@ on join:
     send "{@Welcome5}" to player
     send "{@Ipz}" to player
     send "{@Up}" to player
-# You can add more lines
-    if player has permission "easysetspawn.change":
-        send "{@Welcome6}" to player
+    if player is "LuisArtz":
+        send "&aEl servidor {@Ipz} esta usando tu script." to player
+        send "&aVersion: &b{@Versionz}" to player
 
-on leave:
-    send "&7[&c-&7] %player%" to players
